@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-package go.micro.srv.greeter;
 option go_package = "/proto;greeter";
 
 service Say {

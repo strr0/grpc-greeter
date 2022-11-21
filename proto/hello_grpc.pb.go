@@ -35,7 +35,7 @@ func NewSayClient(cc grpc.ClientConnInterface) SayClient {
 
 func (c *sayClient) Hello(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error) {
 	out := new(Response)
-	err := c.cc.Invoke(ctx, "/go.micro.srv.greeter.Say/Hello", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/Say/Hello", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _Say_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/go.micro.srv.greeter.Say/Hello",
+		FullMethod: "/Say/Hello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SayServer).Hello(ctx, req.(*Request))
@@ -92,7 +92,7 @@ func _Say_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Say_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "go.micro.srv.greeter.Say",
+	ServiceName: "Say",
 	HandlerType: (*SayServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
